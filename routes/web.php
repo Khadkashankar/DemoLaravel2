@@ -16,4 +16,4 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/login',[UserController::class,'index']);
+Route::get("login",[UserController::class,'Login']);

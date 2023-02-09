@@ -30,7 +30,7 @@
       </form>
       <ul class="navbar-nav px-4" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a href="#"><button class="btn  me-2">Log In</button></a>
+          <a href="/login"><button class="btn  me-2">Log In</button></a>
         </li>
         <li class="nav-item">
           <a href="#"><button class="btn">Register</button></a>
