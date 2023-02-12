@@ -33,7 +33,7 @@
           <a href="/login"><button class="btn  me-2">Log In</button></a>
         </li>
         <li class="nav-item">
-          <a href="#"><button class="btn">Register</button></a>
+          <a href="{{route('register')}}"><button class="btn">Register</button></a>
         </li>
         
 </ul>

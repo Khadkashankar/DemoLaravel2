@@ -11,5 +11,17 @@ class UserController extends Controller
     {
         return view('login');
     }
+    public function register()
+    {
+        return view('register');
+    }
+    function save(Request $req)
+    {
+$req->validate([
+    'name'=>'required',
+    'email'=>'required | email',
+    'password'=>'required | min:8',
+]);
+    }
    
 }
