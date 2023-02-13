@@ -12,6 +12,18 @@
 <div class="col-md-4 col-md-offset-4">
     <h4>Register | Custom Auth</h4><hr> 
     <form action="{{route('save')}}" method="post">
+
+    @if(Session::get('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
+    
+    @if(Session::get('fail'))
+    <div class="alert alert-danger">
+        {{Session::get('fail')}}
+    </div>
+    @endif
         @csrf
     <div class="form-group">
     <label for="" class="form-label">Name<label>
