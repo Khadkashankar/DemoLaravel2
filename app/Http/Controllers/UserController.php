@@ -39,5 +39,29 @@ return back()->with('success','New User has been successfully added to database'
 
 }
     }
-   
+public function check(Request $req)
+{
+    //validate request data
+    $req->validate([
+        'email'=>'required | email ',
+        'password'=>'required | min:8',
+    ]);
+    $userInfo = Admin::where('email','=',$req->email)->first();
+    if(!$userInfo)
+{
+    return back()->with('fail','We donot recognize your email address');
+}else{
+    //check password
+    if(Hash::check($req->password,$userInfo->password)){
+        $req->session()->put('LoggedUser',$userInfo->id);
+        return redirect('admin/dashboard');
+    }
+    else{
+        return back()->with('fail','Incorrect password');
+
+    }
+    
+
+}
+}
 }
