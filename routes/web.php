@@ -20,3 +20,8 @@ Route::get("login",[UserController::class,'Login'])->name('login');
 Route::get("register",[UserController::class,'register'])->name('register');
 Route::post("save",[UserController::class,'save'])->name('save');
 Route::post("check",[UserController::class,'check'])->name('check');
+Route::get("dashboard",[UserController::class,'dashboard'])->name('dashboard');
+Route::get("logout",[UserController::class,'logout'])->name('logout');
+Route::group(['middleware'=>['AuthCheck']],function(){
+
+});

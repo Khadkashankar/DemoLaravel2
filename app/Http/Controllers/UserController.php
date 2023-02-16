@@ -54,7 +54,7 @@ public function check(Request $req)
     //check password
     if(Hash::check($req->password,$userInfo->password)){
         $req->session()->put('LoggedUser',$userInfo->id);
-        return redirect('admin/dashboard');
+        return redirect('dashboard');
     }
     else{
         return back()->with('fail','Incorrect password');
@@ -63,5 +63,15 @@ public function check(Request $req)
     
 
 }
+}
+public function dashboard(){
+    $data=['LoggedUserInfo'=>Admin::where('id','=',session('LoggedUser'))->first()];
+    return view('dashboard',$data);
+}
+public function logout(){
+    if(session()->has('LoggedUser')){
+        session()->pull('LoggedUser');
+        return redirect('login');
+    }
 }
 }
