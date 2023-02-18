@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::post("save",[UserController::class,'save'])->name('save');
-Route::post("check",[UserController::class,'check'])->name('check');
+Route::post("check",[UserController::class,'check'])->name('check');  
 Route::get("logout",[UserController::class,'logout'])->name('logout');
 
 Route::group(['middleware'=>['AuthCheck']],function(){
