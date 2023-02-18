@@ -17,18 +17,18 @@ class UserController extends Controller
     {
         return view('register');
     }
-    function save(Request $req)
+    function save(Request $request)
     {
-$req->validate([
+$request->validate([
     'name'=>'required',
     'email'=>'required | email | unique:admins',
     'password'=>'required | min:8',
 ]);
 //inserting data into database
 $admin=new Admin;
-$admin->name=$req->name;
-$admin->email=$req->email;
-$admin->password=Hash::make($req->password);
+$admin->name=$request->name;
+$admin->email=$request->email;
+$admin->password=Hash::make($request->password);
 $result=$admin->save();
 
 if($result)
@@ -39,21 +39,21 @@ return back()->with('success','New User has been successfully added to database'
 
 }
     }
-public function check(Request $req)
+public function check(Request $request)
 {
     //validate request data
-    $req->validate([
+    $request->validate([
         'email'=>'required | email ',
         'password'=>'required | min:8',
     ]);
-    $userInfo = Admin::where('email','=',$req->email)->first();
+    $userInfo = Admin::where('email','=',$request->email)->first();
     if(!$userInfo)
 {
     return back()->with('fail','We donot recognize your email address');
 }else{
     //check password
-    if(Hash::check($req->password,$userInfo->password)){
-        $req->session()->put('LoggedUser',$userInfo->id);
+    if(Hash::check($request->password,$userInfo->password)){
+        $request->session()->put('LoggedUser',$userInfo->id);
         return redirect('dashboard');
     }
     else{
